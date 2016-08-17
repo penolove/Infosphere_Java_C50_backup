@@ -1,0 +1,27 @@
+namespace application;
+
+public composite Classifier(output C50JavaOP_3_out0 ; input _FeatureStream)
+{	param
+		expression $filename ;
+	graph
+		stream<rstring lines> rawTree = com.ibm.streamsx.hdfs::HDFS2FileSource()
+		{
+			param
+				hdfsUri : "hdfs://InvPM30:9000" ;
+				file : $filename ;
+		}
+		(stream<rstring ID,rstring lines> C50JavaOP_3_out0 ; stream<int32 dummy>
+			C50JavaOP_4_out1) as C50JavaOP_10 = C50JavaOP(rawTree ; Switch_4_out0)
+		{
+		}
+
+		
+		(stream<rstring lines> Switch_4_out0) as Switch_4 = Switch(_FeatureStream ;
+			C50JavaOP_4_out1)
+		{
+			param
+				initialStatus : false ;
+				status : true ;
+		}
+
+}

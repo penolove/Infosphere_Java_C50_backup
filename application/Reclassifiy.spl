@@ -1,0 +1,22 @@
+namespace application ;
+
+composite Reclassifiy
+{
+	graph
+		stream<rstring lines> Beacon_3_out0 = FileSource()
+		{
+			param
+				file : "/home/stream/flows.txt" ;
+				format : line ;
+		}
+
+		(stream<rstring ID,rstring lines> Classifier_2_out0) as Classifier_2 =
+			Classifier(Beacon_3_out0)
+		{	
+			param
+				filename : "/user/124.txt" ;
+		}
+
+}
+
+

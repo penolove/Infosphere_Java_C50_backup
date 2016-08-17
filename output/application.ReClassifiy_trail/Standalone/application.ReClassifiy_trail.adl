@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application" name="application::ReClassifiy_trail.appset" productVersion="4.1.1.0" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::ReClassifiy_trail application set</description>
+
+  <application adlPath="Standalone/application.ReClassifiy_trail.adl" applicationDirectory="toolkits/ReClassifiy" applicationScope="Default" buildId="" bundle="./application.ReClassifiy_trail.sab" checkpointDirectory="/home/stream/StreamsStudio/workspace/ReClassifiy/data/ckpt" dataDirectory="/home/stream/StreamsStudio/workspace/ReClassifiy/data" name="application::ReClassifiy_trail" outputDirectory="Standalone" standaloneApplicationDirectory="toolkits/ReClassifiy" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="lines" type="rstring"/>
+        <tuple>
+          <tt:attr name="lines" type="rstring"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="1">
+        <attribute name="ID" type="rstring"/>
+        <attribute name="lines" type="rstring"/>
+        <tuple>
+          <tt:attr name="ID" type="rstring"/>
+          <tt:attr name="lines" type="rstring"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="2">
+        <attribute name="dummy" type="int32"/>
+        <tuple>
+          <tt:attr name="dummy" type="int32"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <pes>
+      <pe class="BeJwzNHZKTUzOz4s3js8vLTGINzRyNjXwSixL9A_0INzSItwguzyxJzog3iTcvSiwPKUpNjQcAn00QDc" index="0" language="C++" optimized="true" relocatable="true" restartable="true" version="4110">
+        <envVars>
+          <envVar name="STREAMS_JAVA_HOME" value="/usr/java/default"/>
+        </envVars>
+        <executable digest="1Sbluew3IGL0RkVFVSXUUO3OYbk=" dynamicLoad="true">
+          <wrapper>none</wrapper>
+          <executableUri>bin/application.ReClassifiy_trail-a.dpe</executableUri>
+          <arguments/>
+          <dependencies/>
+        </executable>
+        <operInstances>
+          <operInstance class="rawTree" definitionIndex="0" index="0" name="rawTree" relocatable="true" restartable="true" singleThreadedOnInputs="true" singleThreadedOnOutputs="false">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;hdfs://InvPM30:9000&quot;"/>
+              <runtimeConstant name="lit$1" value="&quot;/user/124.txt&quot;"/>
+            </runtimeConstants>
+            <inputPorts/>
+            <outputPorts>
+              <outputPort index="0" isMutable="true" name="rawTree" streamName="rawTree" tupleTypeIndex="0" viewable="true">
+                <intraPeConnection iportIndex="0" operInstanceIndex="1"/>
+              </outputPort>
+            </outputPorts>
+          </operInstance>
+          <operInstance class="C50JavaOP_10" definitionIndex="1" index="1" name="C50JavaOP_10" relocatable="true" restartable="true" singleThreadedOnInputs="false" singleThreadedOnOutputs="false">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <inputPorts>
+              <inputPort index="0" isMutable="false" name="rawTree" tupleTypeIndex="0">
+                <intraPeConnection operInstanceIndex="0" oportIndex="0"/>
+              </inputPort>
+              <inputPort index="1" isMutable="false" name="Switch_4_out0" tupleTypeIndex="0">
+                <intraPeConnection operInstanceIndex="3" oportIndex="0"/>
+              </inputPort>
+            </inputPorts>
+            <outputPorts>
+              <outputPort index="0" isMutable="true" name="C50JavaOP_3_out0" streamName="C50JavaOP_3_out0" tupleTypeIndex="1" viewable="true"/>
+              <outputPort index="1" isMutable="true" name="C50JavaOP_4_out1" streamName="C50JavaOP_4_out1" tupleTypeIndex="2" viewable="true">
+                <intraPeConnection iportIndex="1" operInstanceIndex="3"/>
+              </outputPort>
+            </outputPorts>
+          </operInstance>
+          <operInstance class="Beacon_3_out0" definitionIndex="2" index="2" name="Beacon_3_out0" relocatable="true" restartable="true" singleThreadedOnInputs="true" singleThreadedOnOutputs="true">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;/home/stream/flows.txt&quot;"/>
+            </runtimeConstants>
+            <inputPorts/>
+            <outputPorts>
+              <outputPort index="0" isMutable="true" name="Beacon_3_out0" streamName="Beacon_3_out0" tupleTypeIndex="0" viewable="true">
+                <intraPeConnection iportIndex="0" operInstanceIndex="3"/>
+              </outputPort>
+            </outputPorts>
+          </operInstance>
+          <operInstance class="Switch_4" definitionIndex="3" index="3" name="Switch_4" relocatable="true" restartable="true" singleThreadedOnInputs="false" singleThreadedOnOutputs="false">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="false"/>
+              <runtimeConstant name="lit$1" value="true"/>
+            </runtimeConstants>
+            <inputPorts>
+              <inputPort index="0" isMutable="false" name="Beacon_3_out0" tupleTypeIndex="0">
+                <intraPeConnection operInstanceIndex="2" oportIndex="0"/>
+              </inputPort>
+              <inputPort index="1" isControl="true" isMutable="false" name="C50JavaOP_4_out1" tupleTypeIndex="2">
+                <intraPeConnection operInstanceIndex="1" oportIndex="1"/>
+              </inputPort>
+            </inputPorts>
+            <outputPorts>
+              <outputPort index="0" isMutable="false" name="Switch_4_out0" streamName="Switch_4_out0" tupleTypeIndex="0" viewable="true">
+                <intraPeConnection iportIndex="1" operInstanceIndex="1"/>
+              </outputPort>
+            </outputPorts>
+          </operInstance>
+        </operInstances>
+        <tracing level="error"/>
+        <inputPorts/>
+        <outputPorts/>
+      </pe>
+    </pes>
+    <operDefinitions>
+      <operDefinition index="0" kind="com.ibm.streamsx.hdfs::HDFS2FileSource" runtimeType="SPL_Java">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+        </customMetricIndicies>
+      </operDefinition>
+      <operDefinition index="1" kind="application::C50JavaOP" runtimeType="SPL_Java"/>
+      <operDefinition index="2" kind="spl.adapter::FileSource" runtimeType="SPL_C++">
+        <customMetricIndicies>
+          <customMetricIndex>1</customMetricIndex>
+          <customMetricIndex>2</customMetricIndex>
+        </customMetricIndicies>
+      </operDefinition>
+      <operDefinition index="3" kind="spl.utility::Switch" runtimeType="SPL_C++"/>
+    </operDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/stream/StreamsStudio/workspace/ReClassifiy/application/ReClassifiy.spl"/>
+        <uri index="1" path="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/spl/spl/Sys.spl"/>
+      </sourceUris>
+      <compositeOpers>
+        <compositeOper endLine="48" index="0" kind="application::ReClassifiy_trail" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::ReClassifiy_trail Composite</description>
+        </compositeOper>
+        <compositeOper endLine="201" index="1" kind="spl::Sys" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="1" startLine="20" toolkitIndex="1">
+          <description>spl::Sys Composite</description>
+        </compositeOper>
+        <compositeOper endLine="217" index="2" kind="spl::Log" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="1" startLine="206" toolkitIndex="1">
+          <description>spl::Log Composite</description>
+        </compositeOper>
+        <compositeOper endLine="235" index="3" kind="spl::Trace" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="1" startLine="222" toolkitIndex="1">
+          <description>spl::Trace Composite</description>
+        </compositeOper>
+      </compositeOpers>
+      <compositeOperInstances>
+        <compositeOperInstance compositeOperIndex="0" endLine="48" index="4" name="application::ReClassifiy_trail" sourceIndex="0" startLine="3">
+          <primitiveOperInstance endLine="11" index="0" kind="com.ibm.streamsx.hdfs::HDFS2FileSource" name="rawTree" sourceIndex="0" startLine="6" toolkitIndex="14">
+            <outputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="1" operName="C50JavaOP_10" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+          </primitiveOperInstance>
+          <primitiveOperInstance endLine="16" index="1" kind="application::C50JavaOP" name="C50JavaOP_10" sourceIndex="0" startLine="13" toolkitIndex="0">
+            <inputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="0" operName="rawTree" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+              <port index="1">
+                <connections>
+                  <connection operIndex="3" operName="Switch_4" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port index="0"/>
+              <port index="1">
+                <connections>
+                  <connection operIndex="3" operName="Switch_4" portIndex="1" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+          </primitiveOperInstance>
+          <primitiveOperInstance endLine="31" index="2" kind="spl.adapter::FileSource" name="Beacon_3_out0" sourceIndex="0" startLine="25" toolkitIndex="1">
+            <outputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="3" operName="Switch_4" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+          </primitiveOperInstance>
+          <primitiveOperInstance endLine="39" index="3" kind="spl.utility::Switch" name="Switch_4" sourceIndex="0" startLine="33" toolkitIndex="1">
+            <inputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="2" operName="Beacon_3_out0" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+              <port index="1">
+                <connections>
+                  <connection operIndex="1" operName="C50JavaOP_10" portIndex="1" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="1" operName="C50JavaOP_10" portIndex="1" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="ReClassifiy" uri="file:///home/stream/StreamsStudio/workspace/ReClassifiy" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/spl" version="1.2.1"/>
+      <toolkit index="2" name="com.ibm.streams.cep" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streams.cep" version="2.0.0"/>
+      <toolkit index="3" name="com.ibm.streams.cybersecurity" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streams.cybersecurity" version="1.0.0"/>
+      <toolkit index="4" name="com.ibm.streams.dataexplorer" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streams.dataexplorer" version="2.0.0"/>
+      <toolkit index="5" name="com.ibm.streams.db" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streams.db" version="2.0.0"/>
+      <toolkit index="6" name="com.ibm.streams.geospatial" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streams.geospatial" version="3.0.2"/>
+      <toolkit index="7" name="com.ibm.streams.rproject" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streams.rproject" version="2.0.1"/>
+      <toolkit index="8" name="com.ibm.streams.rules" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streams.rules" version="2.0.0"/>
+      <toolkit index="9" name="com.ibm.streams.teda" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streams.teda" version="1.0.2"/>
+      <toolkit index="10" name="com.ibm.streams.text" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streams.text" version="2.1.1"/>
+      <toolkit index="11" name="com.ibm.streams.timeseries" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streams.timeseries" version="3.2.0"/>
+      <toolkit index="12" name="com.ibm.streamsx.dps" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streamsx.dps" version="2.1.0"/>
+      <toolkit index="13" name="com.ibm.streamsx.hbase" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streamsx.hbase" version="2.0.0"/>
+      <toolkit index="14" name="com.ibm.streamsx.hdfs" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streamsx.hdfs" version="3.0.0"/>
+      <toolkit index="15" name="com.ibm.streamsx.inet" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streamsx.inet" version="2.0.2"/>
+      <toolkit index="16" name="com.ibm.streamsx.messaging" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streamsx.messaging2" version="4.0.0"/>
+      <toolkit index="17" name="com.ibm.streamsx.sparkmllib" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streamsx.sparkMLLib" version="1.0.0"/>
+      <toolkit index="18" name="com.ibm.streamsx.topology" uri="file:///home/stream/InfoSphere_Streams/4.1.1.0/toolkits/com.ibm.streamsx.topology" version="1.1.3"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nFilesOpened">
+        <description>The number of files that are opened by the operator for reading data.</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSource` operator.</description>
+      </customMetric>
+      <customMetric index="2" kind="Counter" name="nInvalidTuples">
+        <description>The number of tuples that failed to read correctly in csv or txt format.</description>
+      </customMetric>
+    </customMetrics>
+  </application>
+
+</applicationSet>

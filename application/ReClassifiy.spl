@@ -1,0 +1,48 @@
+namespace application ;
+
+composite ReClassifiy_trail
+{
+	graph
+		stream<rstring lines> rawTree = com.ibm.streamsx.hdfs::HDFS2FileSource()
+		{
+			param
+				hdfsUri : "hdfs://InvPM30:9000" ;
+				file : "/user/124.txt" ;
+		}
+
+		(stream<rstring ID,rstring lines> C50JavaOP_3_out0 ; stream<int32 dummy>
+			C50JavaOP_4_out1) as C50JavaOP_10 = C50JavaOP(rawTree ; Switch_4_out0)
+		{
+		}
+		/*
+		(stream<rstring lines> Beacon_3_out0) as Beacon_3 = Beacon()
+		{
+			param
+				period : 1.2 ;
+			output
+				Beacon_3_out0 : lines = "1,1,1,1,1,1,1,1,1,1,1,1,1,1" ;
+		}*/
+		stream<rstring lines> Beacon_3_out0 = FileSource()
+		{
+			param
+				file : "/home/stream/flows.txt";
+				format : line ;
+				
+		}
+		
+		(stream<rstring lines> Switch_4_out0) as Switch_4 = Switch(Beacon_3_out0 ;
+			C50JavaOP_4_out1)
+		{
+			param
+				initialStatus : false ;
+				status : true ;
+		}
+
+	config
+		hostPool :
+		//HDFSreader = createPool({tags=["HDFSreader"], size=1}, Sys.Exclusive),
+		kafak_tree = createPool({ tags = [ "kafak_tree" ], size = 1 },
+			Sys.Exclusive) ;
+			//decision = createPool({tags=["decision"], size=1}, Sys.Exclusive);
+
+}

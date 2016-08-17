@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<peModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/pe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <class>BeJwzNHZKTUzOz4s3js8vLTGINzRyzkksLs5My0wtijcC8kwNvBLLEv0D4g3RJS2CyzNLkjPiTdDEzYsSy0OKUlPjAaIEB_1H</class>
+    <javaVM>
+      <vmArgs/>
+    </javaVM>
+    <avoidRuntimeYield>Auto</avoidRuntimeYield>
+  </context>
+
+  <operators>
+    <operator>
+      <class>Beacon_3_out0</class>
+    </operator>
+    <operator>
+      <class>Classifier_2::C50JavaOP_10</class>
+    </operator>
+    <operator>
+      <class>Classifier_2::Switch_4</class>
+    </operator>
+    <operator>
+      <class>Classifier_2::rawTree</class>
+    </operator>
+  </operators>
+
+</peModel>

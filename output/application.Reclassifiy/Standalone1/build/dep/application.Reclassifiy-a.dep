@@ -1,0 +1,9 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/application.Reclassifiy-a.dpe -fPIC -shared $(PEapplication.Reclassifiy-a) -lstreams-stdtk-runtime -lstreams_boost_iostreams -lstreams_boost_filesystem -lstreams_boost_system -lstreams-stdtk-javaop -L /usr/java/jdk1.8.0_77/jre/lib/amd64/server -Wl,-rpath -Wl,/usr/java/jdk1.8.0_77/jre/lib/amd64/server -lpthread -ldl -lstreams-stdtk-runtime -lstreams-stdtk-javaop -lpthread -ldl -lstreams-stdtk-runtime $(SPL_LDFLAGS)build/pe/BeJwzNHZKTUzOz4s3js8vLTGINzRyzkksLs5My0wtijcC8kwNvBLLEv0D4g3RJS2CyzNLkjPiTdDEzYsSy0OKUlPjAaIEB_1H.o \
+	    build/operator/Beacon_3_out0.o \
+	    build/type/BeJyrNI03Ti4uMy6pKDFOyswzTcrJT842ycnMSwUAf_1wJCo.o \
+	    build/type/BeJwrMSw2zcnMSy0GABBPANp.o \
+	    build/operator/Classifier_2/rawTree.o \
+	    build/operator/Classifier_2/C50JavaOP_10.o \
+	    build/type/BeJwrMSo28nQpNs3JzEstBgAeiQSc.o \
+	    build/type/BeJwrMcw0TSnNza0EABAkANw.o \
+	    build/operator/Classifier_2/Switch_4.o 

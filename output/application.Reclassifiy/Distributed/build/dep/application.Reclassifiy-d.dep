@@ -1,0 +1,4 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/application.Reclassifiy-d.dpe -fPIC -shared $(PEapplication.Reclassifiy-d) $(SPL_LDFLAGS)build/pe/BeJwzNHLOSSwuzkzLTC2KN7IILs8sSc6IN4kHAGlGAiW.o \
+	    build/operator/Classifier_2/Switch_4.o \
+	    build/type/BeJwrMSw2zcnMSy0GABBPANp.o \
+	    build/type/BeJwrMcw0TSnNza0EABAkANw.o 
